@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\Entretien;
 return new class extends Migration
 {
     /**
@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profils', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+          // This will create an auto-incrementing primary key of type bigint
             $table->string('name');
             $table->string('vehicle_make');
             $table->string('vehicle_model');

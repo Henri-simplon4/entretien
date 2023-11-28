@@ -1,0 +1,73 @@
+
+/* Réinitialisation des styles */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+/* Styles généraux de la page */
+body {
+font-family: Arial, sans-serif;
+}
+
+header {
+background-color: #6b6666;
+color: #ece2e2;
+text-align: center;
+padding: 20px;
+height: 100px;
+}
+
+h1{
+    color: white;
+}
+
+nav {
+background-color: #444;
+color: #fff;
+padding: 10px;
+}
+
+nav ul {
+list-style: none;
+}
+
+nav li {
+display: inline;
+margin-right: 20px;
+}
+
+nav a {
+text-decoration: none;
+color: #fff;
+}
+
+main {
+padding: 20px;
+}
+.conseils{
+text-align: center;
+}
+.card{
+box-shadow: 8px 8px 12px #aaa;
+}
+.card:hover{
+background-color: rgba(116, 50, 32, 0.9);
+color: orange;
+}
+a{
+text-decoration: none;
+color: green;
+}
+section{
+margin-top: -40px;
+background-color: rgba(199, 128, 128, 0.2);
+}
+.bvn{
+color: gray;
+}
+
+/* Styles spécifiques au tableau de bord */
+/* Vous devrez personnaliser cette section en fonction de vos besoins. */
+

@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class client extends Model
+class Modelveh extends Model
 {
-    protected $fillable = ['name', 'email', 'vehicle_vin'];
     use HasFactory;
+    protected $fillable = [
+        'libellee_models',
+    ];
 }

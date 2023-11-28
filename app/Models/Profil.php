@@ -1,17 +1,24 @@
 <?php
 
+// Profil model
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Profil extends Model
 {
-    use HasFactory;
-    protected $fillable = ['name', 'vehicle_make', 'vehicle_model', 'vehicle_year', 'vehicle_vin'];
+    use HasFactory, HasUuids;
 
-    public function entretiens()
-    {
-        return $this->hasMany(Entretien::class);
-    }
+    protected $fillable = [
+        'name',
+        'vehicle_make',
+        'vehicle_model',
+        'vehicle_year',
+        'vehicle_vin',
+    ];
+
+
 }
+

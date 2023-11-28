@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\ListeController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\ModelController;
+use App\Http\Controllers\MarqueController;
+use App\Http\Controllers\AnneeController;
+use App\Http\Controllers\HistoriqueController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +27,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('accueil');
-})->middleware(['auth', 'verified'])->name('');
+})->middleware(['auth', 'verified'])->name('accueil');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -72,11 +76,17 @@ Route::get('/protection', function () {
     return view('protection');
 })->name('protection');
 
+Route::get('/parametre', function () {
+    return view('parametre');
+})->name('parametre');
+
+
+
 
 
 Route::middleware(['auth'])->group(function () {
     // Your other protected routes here
-Route::get('/entretien', [EntretienController::class, 'store'])->name('entretien.store');
+Route::post('/entretien', [EntretienController::class, 'store'])->name('entretien.store');
 Route::get('/historique', 'EntretienController@index')->name('historique.index');
 });
 
@@ -85,11 +95,23 @@ Route::group(['middleware' => 'guest'], function () {
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 });
 
+Route::post('/annee', [AnneeController::class, 'store'])->name('annee.store');
+
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
 // Route::post('/entretien', [EntretienController::class, 'store'])->name('entretien.store');
 // Route::post('/profil', [ProfileController::class, 'store'])->name('profil.store');
-// Route::post('/profilevehicule', [ProfileController::class, 'store'])->name('profil.store');
+Route::post('/profilevehicule', [ProfileController::class, 'store'])->name('profil.store');
 
 Route::get('/liste', [ListeController::class, 'getList'])->name('liste');
+Route::delete('/entretiens/{entretien}', [ListeController::class, 'destroy'])->name('supprimer');
+
+// Route::post('/parametre', [MarqueController::class, 'store'])->name('marque.store');
+Route::post('/parametre', [ModelController::class, 'store'])->name('model.store');
+Route::match(['get', 'post'], '/marque', [MarqueController::class,'store'])->name('marque');
+Route::match(['get', 'post'], '/model', [ModelController::class,'store'])->name('model');
+Route::match(['get', 'post'], '/mannee', [AnneeController::class,'store'])->name('annee');
+
+
+Route::get('/historique', [HistoriqueController::class, 'getList'])->name('historique');

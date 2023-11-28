@@ -3,22 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Liste;
 use App\Models\Entretien;
-use App\Models\Profil;
+use App\Models\Liste;
 
 class ListeController extends Controller
 {
 
     public function getList()
     {
-        // Récupérer tous les attributs de la table 'profils' sauf l'ID
-        $profils = Profil::select('name', 'vehicle_make', 'vehicle_model', 'vehicle_year', 'vehicle_vin')->get();
 
-        // Récupérer le champ 'service' de la table 'entretiens'
-        $services = Entretien::select('service')->get();
 
-        return view('liste', compact('profils', 'services'));
+
+       $entretiens = Entretien::all();
+
+
+
+
+// $data = [];
+//         foreach ($profils as $profil) {
+
+
+// $data[$profil->name] = [
+//                 'profil' => $profil,
+
+
+// 'services' => $entretiens->where('profil_id', $profil->id)->pluck('service')->unique(),
+//             ];
+//         }
+
+        // Passer les données à la vue
+        return view('liste',[ 'entretiens'=>$entretiens]);
+
     }
 
     /**
@@ -92,8 +107,13 @@ class ListeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    public function destroy(Entretien $entretien)
+{
+    // Delete the entretien
+    $entretien->delete();
+
+    return redirect()->route('liste')->with('success', 'Entretien deleted successfully');
+}
+
+
 }
