@@ -30,7 +30,7 @@ class ProfileController extends Controller
     // Save the model to the database
 
 
-    return redirect()->route('profil.store')->with('success', 'Profil enregistré avec succès');
+    return redirect()->route('espaceclient')->with('success', 'Profil enregistré avec succès');
 }
 
 
@@ -54,7 +54,7 @@ public function update(Request $request)
         //
     $request->user()->save();
 
-    return redirect()->route('profile.edit',compact(' $user'))->with('success', 'Profile updated successfully');
+    return redirect()->route('accueil',compact(' $user'))->with('success', 'Profile updated successfully');
 }
 
 }

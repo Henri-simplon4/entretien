@@ -10,6 +10,7 @@ use App\Http\Controllers\ModelController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\AnneeController;
 use App\Http\Controllers\HistoriqueController;
+use App\Http\Controller\ConnexionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,7 +81,9 @@ Route::get('/parametre', function () {
     return view('parametre');
 })->name('parametre');
 
-
+Route::get('/client', function () {
+    return view('client');
+})->name('client');
 
 
 
@@ -115,3 +118,6 @@ Route::match(['get', 'post'], '/mannee', [AnneeController::class,'store'])->name
 
 
 Route::get('/historique', [HistoriqueController::class, 'getList'])->name('historique');
+
+Route::get('/connexion', [ConnexionController::class, 'create'])->name('connexion.store');
+Route::post('/connexion', [ConnexionController::class, 'store'])->name('connexion.store');

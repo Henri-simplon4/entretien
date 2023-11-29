@@ -39,7 +39,7 @@ class EntretienController extends Controller
 
         $entretien->save();
 
-        return redirect()->route('entretien.store')->with('success', 'Entretien enregistré avec succès');
+        return redirect()->route('espaceclient')->with('success', 'Entretien enregistré avec succès');
     }
 
     public function index()
